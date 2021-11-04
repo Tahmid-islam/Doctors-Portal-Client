@@ -18,7 +18,11 @@ const AppointmentBanner = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <img
-            style={{ width: "400px", marginTop: "-120px" }}
+            style={{
+              width: "400px",
+              height: "400px",
+              marginTop: "-100px",
+            }}
             src={doctor}
             alt=""
           />
@@ -57,6 +61,7 @@ const AppointmentBanner = () => {
             <Button variant="contained" style={{ backgroundColor: "#5CE7ED" }}>
               Learn More
             </Button>
+            <br /> <br />
           </Box>
         </Grid>
       </Grid>
