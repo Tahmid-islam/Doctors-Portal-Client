@@ -32,10 +32,10 @@ const Appointments = ({ date }) => {
         <Table sx={{ minWidth: 650 }} aria-label="Appointments table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Time</TableCell>
-              <TableCell align="right">Service</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Time</TableCell>
+              <TableCell align="center">Service</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,12 +44,12 @@ const Appointments = ({ date }) => {
                 key={row._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell align="center" component="th" scope="row">
                   {row.patientName}
                 </TableCell>
-                <TableCell align="right">{row.time}</TableCell>
-                <TableCell align="right">{row.serviceName}</TableCell>
-                <TableCell align="right">Approved</TableCell>
+                <TableCell align="center">{row.time}</TableCell>
+                <TableCell align="center">{row.serviceName}</TableCell>
+                <TableCell align="center">Approved</TableCell>
               </TableRow>
             ))}
           </TableBody>

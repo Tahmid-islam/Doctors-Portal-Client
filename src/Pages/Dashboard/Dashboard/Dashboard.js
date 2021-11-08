@@ -36,23 +36,53 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <NavLink to="/" style={{ textDecoration: "none" }}>
-        <Button color="inherit">Home</Button>
+        <Button
+          variant="contained"
+          sx={{ m: 1, color: "Black", width: "80%" }}
+          color="inherit"
+        >
+          Home
+        </Button>
       </NavLink>
       <br />
       <NavLink to="/appointment" style={{ textDecoration: "none" }}>
-        <Button color="inherit">Appointment</Button>
+        <Button
+          variant="contained"
+          sx={{ m: 1, color: "Black", width: "80%" }}
+          color="inherit"
+        >
+          Appointment
+        </Button>
       </NavLink>
       <Divider />
       <NavLink to={`${url}`} style={{ textDecoration: "none" }}>
-        <Button color="inherit">Dashboard</Button>
+        <Button
+          variant="contained"
+          sx={{ m: 1, color: "Black", width: "80%" }}
+          color="inherit"
+        >
+          Dashboard
+        </Button>
       </NavLink>
       {admin && (
         <Box>
           <NavLink to={`${url}/makeAdmin`} style={{ textDecoration: "none" }}>
-            <Button color="inherit">Make Admin</Button>
+            <Button
+              variant="contained"
+              sx={{ m: 1, color: "Black", width: "80%" }}
+              color="inherit"
+            >
+              Make Admin
+            </Button>
           </NavLink>
           <NavLink to={`${url}/addDoctor`} style={{ textDecoration: "none" }}>
-            <Button color="inherit">Add Doctor</Button>
+            <Button
+              variant="contained"
+              sx={{ m: 1, color: "Black", width: "80%" }}
+              color="inherit"
+            >
+              Add Doctor
+            </Button>
           </NavLink>
         </Box>
       )}
