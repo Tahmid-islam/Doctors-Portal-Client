@@ -57,7 +57,7 @@ const BookingModal = ({
     };
 
     //send to the server
-    fetch("http://localhost:5000/appointments", {
+    fetch("https://stormy-brushlands-71850.herokuapp.com/appointments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
