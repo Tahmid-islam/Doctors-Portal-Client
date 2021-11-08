@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Footer from "../../Home/Footer/Footer";
-import Navigation from "../../Shared/Navigation/Navigation";
 import AppointmentHeader from "../AppointmentHeader/AppointmentHeader";
 import AvailableAppointments from "../AvailableAppointments/AvailableAppointments";
 
