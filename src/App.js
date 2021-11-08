@@ -7,12 +7,15 @@ import Register from "./Pages/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import Footer from "./Pages/Home/Footer/Footer";
+import Navigation from "./Pages/Shared/Navigation/Navigation";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
+          <Navigation></Navigation>
           <Switch>
             <Route exact path="/">
               <Home></Home>
@@ -33,6 +36,7 @@ function App() {
               <Register></Register>
             </Route>
           </Switch>
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </div>
