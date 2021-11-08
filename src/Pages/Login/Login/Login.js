@@ -14,7 +14,7 @@ import login from "../../../images/login.png";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
-  const { user, loginUser, isLoading, authError } = useAuth();
+  const { user, loginUser, isLoading, authError, signInWithGoogle } = useAuth();
 
   const location = useLocation();
   const history = useHistory();
@@ -26,10 +26,16 @@ const Login = () => {
     newLoginData[field] = value;
     setLoginData(newLoginData);
   };
+
   const handleLoginSubmit = (e) => {
     loginUser(loginData.email, loginData.password, location, history);
     e.preventDefault();
   };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(location, history);
+  };
+
   return (
     <Container>
       <Grid container spacing={2}>
@@ -42,7 +48,7 @@ const Login = () => {
               type="email"
               label="Your Email"
               name="email"
-              onChange={handleOnChange}
+              onBlur={handleOnChange}
               variant="standard"
             />
             <TextField
@@ -51,7 +57,7 @@ const Login = () => {
               label="Your Password"
               type="password"
               name="password"
-              onChange={handleOnChange}
+              onBlur={handleOnChange}
               variant="standard"
               autoComplete="current-password"
             />
@@ -66,10 +72,16 @@ const Login = () => {
             <NavLink style={{ textDecoration: "none" }} to="/register">
               <Button variant="text">New User? Please Register</Button>
             </NavLink>
+            {isLoading && <CircularProgress />}
+            {user?.email && (
+              <Alert severity="success">Login Successfully!</Alert>
+            )}
+            {authError && <Alert severity="error">{authError}</Alert>}
           </form>
-          {isLoading && <CircularProgress />}
-          {user?.email && <Alert severity="success">Login Successfully!</Alert>}
-          {authError && <Alert severity="error">{authError}</Alert>}
+          <p>--------------------------------------</p>
+          <Button onClick={handleGoogleSignIn} variant="contained">
+            Google Sign In
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <img style={{ width: "100%" }} src={login} alt="" />

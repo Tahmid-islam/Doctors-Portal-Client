@@ -8,15 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import login from "../../../images/login.png";
 import useAuth from "../../../hooks/useAuth";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
+  const history = useHistory();
   const { user, registerUser, isLoading, authError } = useAuth();
 
-  const handleOnChange = (e) => {
+  const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const newLoginData = { ...loginData };
@@ -28,7 +29,7 @@ const Register = () => {
       alert("Your Password Did Not Match");
       return;
     }
-    registerUser(loginData.email, loginData.password);
+    registerUser(loginData.email, loginData.password, loginData.name, history);
     e.preventDefault();
   };
   return (
@@ -41,10 +42,19 @@ const Register = () => {
               <TextField
                 sx={{ width: "75%", m: 1 }}
                 id="standard-basic"
+                type="text"
+                label="Your Name"
+                name="name"
+                onBlur={handleOnBlur}
+                variant="standard"
+              />
+              <TextField
+                sx={{ width: "75%", m: 1 }}
+                id="standard-basic"
                 type="email"
                 label="Your Email"
                 name="email"
-                onChange={handleOnChange}
+                onBlur={handleOnBlur}
                 variant="standard"
               />
               <TextField
@@ -53,7 +63,7 @@ const Register = () => {
                 label="Your Password"
                 type="password"
                 name="password"
-                onChange={handleOnChange}
+                onBlur={handleOnBlur}
                 variant="standard"
                 autoComplete="current-password"
               />
@@ -63,7 +73,7 @@ const Register = () => {
                 label="Re-type Password"
                 type="password"
                 name="password2"
-                onChange={handleOnChange}
+                onBlur={handleOnBlur}
                 variant="standard"
                 autoComplete="current-password"
               />
