@@ -8,14 +8,21 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import login from "../../../images/login.png";
 import useAuth from "../../../hooks/useAuth";
+import { Box } from "@mui/system";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
+  const location = useLocation();
   const history = useHistory();
-  const { user, registerUser, isLoading, authError } = useAuth();
+  const { user, registerUser, isLoading, authError, signInWithGoogle } =
+    useAuth();
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(location, history);
+  };
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
@@ -40,57 +47,70 @@ const Register = () => {
             Register
           </Typography>
           {!isLoading && (
-            <form onSubmit={handleLoginSubmit}>
-              <TextField
-                sx={{ width: "75%", m: 1 }}
-                id="standard-basic"
-                type="text"
-                label="Your Name"
-                name="name"
-                onBlur={handleOnBlur}
-                variant="standard"
-              />
-              <TextField
-                sx={{ width: "75%", m: 1 }}
-                id="standard-basic"
-                type="email"
-                label="Your Email"
-                name="email"
-                onBlur={handleOnBlur}
-                variant="standard"
-              />
-              <TextField
-                sx={{ width: "75%", m: 1 }}
-                id="standard-basic"
-                label="Your Password"
-                type="password"
-                name="password"
-                onBlur={handleOnBlur}
-                variant="standard"
-                autoComplete="current-password"
-              />
-              <TextField
-                sx={{ width: "75%", m: 1 }}
-                id="standard-basic"
-                label="Re-type Password"
-                type="password"
-                name="password2"
-                onBlur={handleOnBlur}
-                variant="standard"
-                autoComplete="current-password"
-              />
+            <Box>
+              <form onSubmit={handleLoginSubmit}>
+                <TextField
+                  sx={{ width: "75%", m: 1 }}
+                  id="standard-basic"
+                  type="text"
+                  label="Your Name"
+                  name="name"
+                  onBlur={handleOnBlur}
+                  variant="standard"
+                />
+                <TextField
+                  sx={{ width: "75%", m: 1 }}
+                  id="standard-basic"
+                  type="email"
+                  label="Your Email"
+                  name="email"
+                  onBlur={handleOnBlur}
+                  variant="standard"
+                />
+                <TextField
+                  sx={{ width: "75%", m: 1 }}
+                  id="standard-basic"
+                  label="Your Password"
+                  type="password"
+                  name="password"
+                  onBlur={handleOnBlur}
+                  variant="standard"
+                  autoComplete="current-password"
+                />
+                <TextField
+                  sx={{ width: "75%", m: 1 }}
+                  id="standard-basic"
+                  label="Re-type Password"
+                  type="password"
+                  name="password2"
+                  onBlur={handleOnBlur}
+                  variant="standard"
+                  autoComplete="current-password"
+                />
 
-              <Button
-                type="submit"
-                sx={{ width: "75%", m: 1 }}
-                variant="contained"
-              >
-                Register
+                <Button
+                  type="submit"
+                  sx={{ width: "75%", m: 1 }}
+                  variant="contained"
+                >
+                  Register
+                </Button>
+                <NavLink style={{ textDecoration: "none" }} to="/login">
+                  <Button variant="text">
+                    Already Registered? Please Login
+                  </Button>
+                </NavLink>
+              </form>
+
+              <p>--------------------------------------</p>
+              <Button onClick={handleGoogleSignIn} variant="contained">
+                Google Sign In
               </Button>
-              <NavLink style={{ textDecoration: "none" }} to="/login">
-                <Button variant="text">Already Registered? Please Login</Button>
-              </NavLink>
-            </form>
+              <br />
+              <Link to="/">
+                <Button variant="text"> Back To Home</Button>
+              </Link>
+            </Box>
           )}
           {isLoading && <CircularProgress />}
           {user?.email && (

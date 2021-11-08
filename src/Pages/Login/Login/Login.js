@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { NavLink, useLocation, useHistory, Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import login from "../../../images/login.png";
 
@@ -84,6 +84,10 @@ const Login = () => {
           <Button onClick={handleGoogleSignIn} variant="contained">
             Google Sign In
           </Button>
+          <br />
+          <Link to="/">
+            <Button variant="text"> Back To Home</Button>
+          </Link>
         </Grid>
         <Grid item xs={12} md={6}>
           <img style={{ width: "100%" }} src={login} alt="" />
