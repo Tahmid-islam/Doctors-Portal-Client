@@ -8,20 +8,21 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import login from "../../../images/login.png";
 import useAuth from "../../../hooks/useAuth";
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
   const location = useLocation();
-  const history = useHistory();
+  const Navigate = useNavigate();
   const { user, registerUser, isLoading, authError, signInWithGoogle } =
     useAuth();
 
   const handleGoogleSignIn = () => {
-    signInWithGoogle(location, history);
+    signInWithGoogle(location, Navigate);
   };
 
   const handleOnBlur = (e) => {
@@ -36,7 +37,7 @@ const Register = () => {
       alert("Your Password Did Not Match");
       return;
     }
-    registerUser(loginData.email, loginData.password, loginData.name, history);
+    registerUser(loginData.email, loginData.password, loginData.name, Navigate);
     e.preventDefault();
   };
   return (
