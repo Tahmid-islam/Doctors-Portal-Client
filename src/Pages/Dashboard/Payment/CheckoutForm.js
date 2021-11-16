@@ -16,11 +16,14 @@ const CheckoutForm = ({ appointment }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://stormy-brushlands-71850.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [price]);
@@ -83,7 +86,7 @@ const CheckoutForm = ({ appointment }) => {
         transaction: paymentIntent.client_secret.slice("_secret")[0],
       };
 
-      const url = `http://localhost:5000/appointments/${_id}`;
+      const url = `https://stormy-brushlands-71850.herokuapp.com/appointments/${_id}`;
       fetch(url, {
         method: "PUT",
         headers: {

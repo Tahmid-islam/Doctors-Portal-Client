@@ -1,26 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Grid, Typography } from "@mui/material";
-import doctorImg from "../../../images/doctor-small.png";
 import OurDoctorSingle from "./OurDoctorSingle";
 
-const doctorsData = [
-  {
-    name: "Dr. Coudi",
-    phone: "+880-188-934789",
-    image: doctorImg,
-  },
-  {
-    name: "Dr. Coudi",
-    phone: "+880-188-934789",
-    image: doctorImg,
-  },
-  {
-    name: "Dr. Coudi",
-    phone: "+880-188-934789",
-    image: doctorImg,
-  },
-];
 const OurDoctors = () => {
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    fetch("https://stormy-brushlands-71850.herokuapp.com/doctors")
+      .then((res) => res.json())
+      .then((data) => setDoctors(data));
+  }, [doctors]);
+
   return (
     <Container>
       <Typography
@@ -31,8 +21,8 @@ const OurDoctors = () => {
         OUR DOCTORS
       </Typography>
       <Grid container spacing={3} sx={{ mt: 2 }}>
-        {doctorsData.map((item, i) => (
-          <OurDoctorSingle key={i} item={item} />
+        {doctors.map((doctor, i) => (
+          <OurDoctorSingle key={i} doctor={doctor} />
         ))}
       </Grid>
     </Container>
